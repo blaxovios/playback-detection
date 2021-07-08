@@ -3,12 +3,14 @@ import os
 # Standard PySceneDetect imports:
 from scenedetect.video_manager import VideoManager
 from scenedetect.scene_manager import SceneManager
+from scenedetect.scene_manager import save_images
 # For caching detection metrics and saving/loading to a stats file
 from scenedetect.stats_manager import StatsManager
 # For content-aware scene detection:
 from scenedetect.detectors.content_detector import ContentDetector
 # Get videos from pytube
 import pytube
+from youtube_download import video_non
 
 # Scene detect and analysis on the original video
 path='C:\\Users\\tsepe\\Downloads\\Video'
@@ -55,17 +57,23 @@ def find_scenes(video_path,threshold=30.0):
                 i+1,
                 scene[0].get_timecode(), scene[0].get_frames(),
                 scene[1].get_timecode(), scene[1].get_frames(),))
-
         # We only write to the stats file if a save is required:
         if stats_manager.is_save_required():
             base_timecode = video_manager.get_base_timecode()
             with open(stats_file_path, 'w') as stats_file:
                 stats_manager.save_to_csv(stats_file, base_timecode)
 
+        # Save one image per scene.
+        save_images(scene_list=scene_list, video_manager=video_manager, num_images=3,
+                    frame_margin=1, image_extension='jpg', encoder_param=95,
+                    image_name_template='Scene-$SCENE_NUMBER-$IMAGE_NUMBER',
+                    output_dir='C:\\Users\\tsepe\\Downloads\\Video\\Scene Images',
+                    downscale_factor=1, show_progress=False)
+
     finally:
         video_manager.release()
 
     return scene_list
 
-scenes = find_scenes('C:\\Users\\tsepe\\Downloads\\Video\\Timbaland - Apologize ft OneRepublic.mp4')
+scenes = find_scenes(video_non)
 
