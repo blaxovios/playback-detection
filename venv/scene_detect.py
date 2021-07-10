@@ -25,18 +25,9 @@ def find_scenes(video_path,threshold=30.0):
     # takes detector options, e.g. threshold).
     scene_manager.add_detector(ContentDetector(threshold=threshold))
 
-    # We save our stats file to {VIDEO_PATH}.stats.csv.
-    stats_file_path = '%s.stats.csv' % video_path
-
     scene_list = []
 
     try:
-        # If stats file exists, load it.
-        if os.path.exists(stats_file_path):
-            # Read stats from CSV file opened in read mode:
-            with open(stats_file_path, 'r') as stats_file:
-                stats_manager.load_from_csv(stats_file)
-
         # Set downscale factor to improve processing speed.
         video_manager.set_downscale_factor()
 
