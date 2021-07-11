@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcfa3310-f26f-4afd-a34c-380bb32e8d76" name="Default Changelist" comment="again">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/audio_analysis_playback.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/audio_analysis_playback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/detect_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/detect_audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/detect_mouth.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/detect_mouth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/scene_detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/scene_detect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/train_and_analysis.py" beforeDir="false" />
-    </list>
+    <list default="true" id="fcfa3310-f26f-4afd-a34c-380bb32e8d76" name="Default Changelist" comment="again" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625950271905</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="again">
+      <created>1625972198437</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1625972198437</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import librosa
 import librosa.display
 import soundfile as sf
-from audio_analysis_playback import audio_check_list
+from audio_analysis_playback import *
 
 # Download playback song
 url = 'https://www.youtube.com/watch?v=XzW07ro2uSk'
@@ -183,3 +183,23 @@ print('Face recognition is complete') # Success
 
 res = len(set(mouth_check_list) & set(audio_check_list)) / float(len(set(mouth_check_list) | set(audio_check_list))) * 100
 print("Percentage similarity among lists is : " + str(res))
+
+A=[1,0,1,1, 'cat', 4.5,     'no']
+B=[1,1,1,1, 'cat', False,   'no']
+C=[1,0,1,0, 16,    'John',  'no']
+D=[1,0,0,0, (4,3), 'Sally', 'no']
+
+
+def number_of_matching_positions(*lists):
+    """
+    Given lists, a list of lists whose members are all of the same length,
+    return the number of positions where all items in member lists are equal.
+    """
+    return sum([len(set(t)) <= 1 for t in zip(* lists)])
+
+print(number_of_matching_positions(),
+      number_of_matching_positions(A),
+      number_of_matching_positions(A, A),
+      number_of_matching_positions(A, B),
+      number_of_matching_positions(A, B, C),
+      number_of_matching_positions(A, B, C, D))
