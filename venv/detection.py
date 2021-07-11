@@ -11,32 +11,24 @@ import matplotlib.pyplot as plt
 import librosa
 import librosa.display
 import soundfile as sf
-from audio_analysis_playback import *
+import librosa
+import librosa.display
+import sklearn
 
-# Download playback song
-url = 'https://www.youtube.com/watch?v=XzW07ro2uSk'
-path='C:\\Users\\tsepe\\Downloads\\Video'
-youtube = pytube.YouTube(url)
-video = youtube.streams.get_highest_resolution()
-video_playback = video.download(path)
-print('Downloaded successfully') # Success
-
-# Download non-playback song
+# Download song
 url = 'https://www.youtube.com/watch?v=QiB97xZIzQY'
-path='C:\\Users\\tsepe\\Downloads\\Video'
+path = 'C:\\Users\\tsepe\\Downloads\\Video'
 youtube = pytube.YouTube(url)
 video = youtube.streams.get_highest_resolution()
 video_non = video.download(path)
 print('Downloaded successfully') # Success
 
-# Select playback and non-playback
-vid_playb = mp.VideoFileClip(r"C:\\Users\\tsepe\\Downloads\\Video\\Rita Ora - How We Do (Party) backing track fail.mp4")
+# Extract audio
 vid_non = mp.VideoFileClip(r"C:\\Users\\tsepe\\Downloads\\Video\\SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.mp4")
-vid_playb.audio.write_audiofile(r"C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--Rita Ora - How We Do (Party) backing track fail.wav")
 vid_non.audio.write_audiofile(r"C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav")
-audio_playb = ("C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--Rita Ora - How We Do (Party) backing track fail.wav")
 audio_non = ("C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav")
 
+# Start audio analysis
 y, sr = librosa.load(audio_non)
 # And compute the spectrogram magnitude and phase
 S_full, phase = librosa.magphase(librosa.stft(y))
@@ -79,9 +71,30 @@ S_foreground = mask_v * S_full
 S_background = mask_i * S_full
 # sphinx_gallery_thumbnail_number = 2
 
+# Extract only vocals
 new_y = librosa.istft(S_foreground*phase)
 vocal_audio = sf.write("C:\\Users\\tsepe\\Downloads\\Video\\VOCALS ONLY--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav", new_y, sr)
 print('Vocals Separated') # Success
+
+# Create boolean list from audio file with vocals with values representing if he sings or not.
+audio_data = "C:\\Users\\tsepe\\Downloads\\Video\\VOCALS ONLY--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav"
+x , sr = librosa.load(audio_data, sr=None)
+
+spectral_centroids = librosa.feature.spectral_centroid(x, sr=sr)[0]
+# Computing the time variable for visualization
+frames = range(len(spectral_centroids))
+t = librosa.frames_to_time(frames)
+# Normalising the spectral centroid for visualisation
+def normalize(x, axis=0):
+    return sklearn.preprocessing.minmax_scale(x, axis=axis)
+
+audio_check_list = []
+centr_list = normalize(spectral_centroids).tolist()
+for elem in centr_list:
+    if elem > 0.2:
+        audio_check_list.append(1)
+    else:
+        audio_check_list.append(0)
 
 # Extract frames
 vidcap = cv2.VideoCapture(video_non)
@@ -92,8 +105,6 @@ while success:
   success,image = vidcap.read()
   count += 1
 print('Frames were extracted as images') # Success
-fps = vidcap.get(cv2.CAP_PROP_FPS)
-print('FPS of the video:', fps) # Success
 
 # To make face_recognition work, see more at: https://github.com/ageitgey/face_recognition/issues/175#issue-257710508
 
@@ -112,6 +123,7 @@ def get_filepaths(directory):
     return file_paths
 full_file_paths = get_filepaths(directory)
 
+# Create boolean list with values representing if mouth is open or not.
 mouth_check_list = []
 print('The absolute paths of the images have filled a list') # Success
 
@@ -181,25 +193,11 @@ for x in full_file_paths:
         continue
 print('Face recognition is complete') # Success
 
-res = len(set(mouth_check_list) & set(audio_check_list)) / float(len(set(mouth_check_list) | set(audio_check_list))) * 100
-print("Percentage similarity among lists is : " + str(res))
-
-A=[1,0,1,1, 'cat', 4.5,     'no']
-B=[1,1,1,1, 'cat', False,   'no']
-C=[1,0,1,0, 16,    'John',  'no']
-D=[1,0,0,0, (4,3), 'Sally', 'no']
-
-
-def number_of_matching_positions(*lists):
-    """
-    Given lists, a list of lists whose members are all of the same length,
-    return the number of positions where all items in member lists are equal.
-    """
-    return sum([len(set(t)) <= 1 for t in zip(* lists)])
-
-print(number_of_matching_positions(),
-      number_of_matching_positions(A),
-      number_of_matching_positions(A, A),
-      number_of_matching_positions(A, B),
-      number_of_matching_positions(A, B, C),
-      number_of_matching_positions(A, B, C, D))
+# Check whether video is playback or not by boolean array equality
+a = np.array(audio_check_list)
+b = np.array(mouth_check_list)
+res = np.array(a == b)
+if res == False:
+    print('Video is not playback')
+else:
+    print('Video is playback')
