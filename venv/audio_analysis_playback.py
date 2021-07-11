@@ -5,14 +5,15 @@ import matplotlib.pyplot as plt
 import librosa
 import librosa.display
 import soundfile as sf
+import sklearn
 
 # Select playback and non-playback
 vid_playb = mp.VideoFileClip(r"C:\\Users\\tsepe\\Downloads\\Video\\Rita Ora - How We Do (Party) backing track fail.mp4")
-vid_non = mp.VideoFileClip(r"C:\\Users\\tsepe\\Downloads\\Video\\RITA ORA - How We Do (Party) (Explicit Video).mp4")
+vid_non = mp.VideoFileClip(r"C:\\Users\\tsepe\\Downloads\\Video\\SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.mp4")
 vid_playb.audio.write_audiofile(r"C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--Rita Ora - How We Do (Party) backing track fail.wav")
-vid_non.audio.write_audiofile(r"C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--RITA ORA - How We Do (Party) (Explicit Video).wav")
+vid_non.audio.write_audiofile(r"C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav")
 audio_playb = ("C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--Rita Ora - How We Do (Party) backing track fail.wav")
-audio_non = ("C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--RITA ORA - How We Do (Party) (Explicit Video).wav")
+audio_non = ("C:\\Users\\tsepe\\Downloads\\Video\\AUDIO--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav")
 
 y, sr = librosa.load(audio_non)
 # And compute the spectrogram magnitude and phase
@@ -57,4 +58,25 @@ S_background = mask_i * S_full
 # sphinx_gallery_thumbnail_number = 2
 
 new_y = librosa.istft(S_foreground*phase)
-vocal_audio = sf.write("C:\\Users\\tsepe\\Downloads\\Video\\VOCALS ONLY--RITA ORA - How We Do (Party) (Explicit Video).wav", new_y, sr)
+vocal_audio = sf.write("C:\\Users\\tsepe\\Downloads\\Video\\VOCALS ONLY--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav", new_y, sr)
+
+audio_data = "C:\\Users\\tsepe\\Downloads\\Video\\VOCALS ONLY--SING WITH ME CHALLENGE! ARCADE DUNCAN LAURENCE SINGING DUET shorts.wav"
+x , sr = librosa.load(audio_data, sr=None)
+
+spectral_centroids = librosa.feature.spectral_centroid(x, sr=sr)[0]
+# Computing the time variable for visualization
+frames = range(len(spectral_centroids))
+t = librosa.frames_to_time(frames)
+# Normalising the spectral centroid for visualisation
+def normalize(x, axis=0):
+    return sklearn.preprocessing.minmax_scale(x, axis=axis)
+#Plotting the Spectral Centroid along the waveform
+plt.plot(t, normalize(spectral_centroids), color='b')
+
+audio_check_list = []
+centr_list = normalize(spectral_centroids).tolist()
+for elem in centr_list:
+    if elem > 0.2:
+        audio_check_list.append(1)
+    else:
+        audio_check_list.append(0)

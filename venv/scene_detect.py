@@ -1,4 +1,4 @@
-from __future__ import print_function
+'''from __future__ import print_function
 import os
 # Standard PySceneDetect imports:
 from scenedetect.video_manager import VideoManager

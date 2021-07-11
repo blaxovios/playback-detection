@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw
+'''from PIL import Image, ImageDraw
 import os
 import face_recognition
 import math

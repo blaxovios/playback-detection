@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcfa3310-f26f-4afd-a34c-380bb32e8d76" name="Default Changelist" comment="moving">
+    <list default="true" id="fcfa3310-f26f-4afd-a34c-380bb32e8d76" name="Default Changelist" comment="again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/audio_analysis_playback.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/audio_analysis_playback.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/detect_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/detect_audio.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/detect_mouth.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/detect_mouth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/detection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/scene_detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/scene_detect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/youtube_download.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/train_and_analysis.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
       <recent name="C:\Users\tsepe\PycharmProjects\PlaybackDetection\venv" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.frame_detect">
+  <component name="RunManager" selected="Python.detection (1)">
     <configuration name="audio_analysis_playback" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PlaybackDetection" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -69,9 +71,6 @@
       <module name="PlaybackDetection" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -86,7 +85,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="frame_detect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="detection (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PlaybackDetection" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,7 +97,28 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/frame_detect.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/detection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="detection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PlaybackDetection" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\tsepe\PycharmProjects\PlaybackDetection\venv\detection.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -149,42 +169,21 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="youtube_download" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PlaybackDetection" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/youtube_download.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.main" />
       <item itemvalue="Python.detect_audio" />
       <item itemvalue="Python.scene_detect" />
-      <item itemvalue="Python.youtube_download" />
       <item itemvalue="Python.audio_analysis_playback" />
-      <item itemvalue="Python.frame_detect" />
+      <item itemvalue="Python.detection" />
+      <item itemvalue="Python.detection (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.frame_detect" />
-        <item itemvalue="Python.scene_detect" />
-        <item itemvalue="Python.detect_audio" />
+        <item itemvalue="Python.detection (1)" />
         <item itemvalue="Python.audio_analysis_playback" />
         <item itemvalue="Python.detect_audio" />
+        <item itemvalue="Python.detection" />
+        <item itemvalue="Python.scene_detect" />
       </list>
     </recent_temporary>
   </component>
@@ -211,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625763547904</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="again">
+      <created>1625950271905</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1625950271905</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -229,6 +235,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2nd" />
     <MESSAGE value="moving" />
-    <option name="LAST_COMMIT_MESSAGE" value="moving" />
+    <MESSAGE value="again" />
+    <option name="LAST_COMMIT_MESSAGE" value="again" />
   </component>
 </project>

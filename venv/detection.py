@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import librosa
 import librosa.display
 import soundfile as sf
+from audio_analysis_playback import audio_check_list
 
 # Download playback song
 url = 'https://www.youtube.com/watch?v=XzW07ro2uSk'
@@ -91,6 +92,8 @@ while success:
   success,image = vidcap.read()
   count += 1
 print('Frames were extracted as images') # Success
+fps = vidcap.get(cv2.CAP_PROP_FPS)
+print('FPS of the video:', fps) # Success
 
 # To make face_recognition work, see more at: https://github.com/ageitgey/face_recognition/issues/175#issue-257710508
 
@@ -172,9 +175,11 @@ for x in full_file_paths:
                     mouth_check_list.append(0)
                     return False
             # singer open mouth
-            print('Is mouth open:', check_mouth_open(top_lip,bottom_lip) )
         except IndexError:
             print('No mouth found')
     else:
         continue
 print('Face recognition is complete') # Success
+
+res = len(set(mouth_check_list) & set(audio_check_list)) / float(len(set(mouth_check_list) | set(audio_check_list))) * 100
+print("Percentage similarity among lists is : " + str(res))
