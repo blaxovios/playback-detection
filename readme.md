@@ -1,4 +1,4 @@
-# List of modules doing various executions
+# Playback detection
 
 ### Installation
 
