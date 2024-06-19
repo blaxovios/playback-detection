@@ -1,0 +1,6 @@
+[GENERAL]
+SONG_YOUTUBE_URL = "https://www.youtube.com/watch?v=QiB97xZIzQY"
+VIDEO_DOWNLOAD_PATH = "data/static/output/video/youtube_video.mp4"
+VIDEOS_EXTRACTED_AUDIO_PATH = "data/static/output/audio/audio_from_youtube_video.wav"
+VIDEOS_EXTRACTED_AUDIO_VOCAL_PATH = "data/static/output/audio/vocal.wav"
+VIDEOS_EXTRACTED_IMAGES_FRAMES_PATH = "data/static/output/images/frames/"
